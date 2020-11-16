@@ -1,0 +1,50 @@
+  <div class="container px-5 px-sm-o">
+  <div class="row">
+    <div class="col-md-3">
+     <%= render 'books/user', book: @book, user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table tabl-hover table-inverse">
+         <thead>
+          <tr>
+           <th></th>
+           <th></th>
+           <th></th>
+           <th></th>
+          </tr>
+         </thead>
+         <tbody>
+         <tr>
+          <!--投稿ユーザー画像・名前-->
+          <td>
+           <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+           <%= link_to @user.name, user_path(@user)  %>
+          </td>
+          <!--タイトル-->
+          <td>
+           <%= link_to @showbook.title, book_path(@showbook) %>
+          </td>
+          <!--感想-->
+          <td>
+           <%= @showbook.body %>
+          </td>
+          <td>
+           <% if @showbook.user == current_user %>
+           <%= link_to 'Edit', edit_book_path(@showbook), class:'btn btn-sm btn-success' %>
+           <% end %>
+          </td>
+          <td>
+           <% if @showbook.user == current_user %>
+           <%= link_to 'Destroy', book_path(@showbook), method: :delete, class:'btn btn-sm btn-danger destroy_book' %>
+           <% end %>
+           </a>
+          </td>
+         </tr>
+         </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+

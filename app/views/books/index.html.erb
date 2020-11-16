@@ -1,0 +1,44 @@
+
+
+<div class="container px-5 px-sm-o">
+  <div class="row">
+    <div class="col-md-3">
+     <%= render 'books/user', book: @book, user: @user %>
+    </div>
+
+
+    <div class="col-md-8 offset-md-1">
+        <h2>Books</h2>
+        <table class="table tabl-hover table-inverse">
+         <thead>
+          <tr>
+           <th></th>
+           <th>Title</th>
+           <th>Opinion</th>
+           <th></th>
+          </tr>
+         </thead>
+         <tbody>
+         <% @books.each do |book| %>
+         <tr>
+          <!--投稿ユーザー-->
+          <td>
+           <%= link_to user_path(book.user) do %>
+           <%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg" %>
+           <% end %>
+          </td>
+          <!--タイトル-->
+          <td>
+           <%= link_to book_path(book.id) do %>
+           <%= book.title %>
+           <% end %>
+          </td>
+          <!--感想-->
+          <td><%= book.body %></td>
+         </tr>
+         <% end %>
+         </tbody>
+        </table>
+    </div>
+  </div>
+</div>
