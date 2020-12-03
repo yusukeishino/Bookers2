@@ -27,6 +27,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @showbook = Book.find(params[:id])
     @user = User.find(@showbook.user_id)
+    @book_comment = BookComment.new
   end
 
   def destroy
