@@ -22,12 +22,24 @@
           <td>
            <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg" %>
           </td>
+          <!--ユーザー名-->
           <td>
-           <!--ユーザー名-->
            <%= user.name %>
           </td>
+          <!--フォロー数-->
           <td>
+           <p><%= "フォロー数: #{user.follower.count}" %></p>
+          </td>
+          <!--フォロワー数-->
+          <td>
+           <p><%= "フォロワー数: #{user.followed.count}" %></p>
+          </td>
+          <!--フォローする・外す-->
+          <td>
+           　<%= render 'relationships/follow_button', user: user %>
+          </td>
           <!--show-->
+          <td>
           <%= link_to "Show", user_path(user.id)  %>
           </td>
          </tr>

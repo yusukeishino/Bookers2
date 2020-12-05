@@ -26,14 +26,35 @@
          <tr>
            <th>introduction</th>
            <th><%= user.introduction %></th>
+         </tr>
+         <tr>
+           <th>follows</th>
+           <th>
+            <%= link_to follow_users_path(user_id: user.id) do %>
+            <p><%= "#{user.follower.count}" %></p>
+            <% end %>
+          </th>
+         </tr>
+         <tr>
+           <th>followers</th>
+           <th>
+             <%= link_to follower_users_path(user_id: user.id) do %>
+             <p><%= "#{user.followed.count}" %></p>
+             <% end %>
+           </th>
+         </tr>
        </tbody>
      </table>
     </div>
   </div>
 </div>
+  <!--フォローする・外すボタン-->
 
-
+　<% if current_user == user %>
   <%= link_to "User edit", edit_user_path(user), class: 'btn btn-outline-secondary btn-bloc fas fa-user-cog edit_user' %>
+  <% else %>
+  <%= render 'relationships/follow_button', user: user %>
+  <% end %>
 
 
 <h1>New book</h1>
